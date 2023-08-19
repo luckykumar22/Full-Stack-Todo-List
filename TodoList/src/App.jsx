@@ -1,5 +1,11 @@
+import { Home } from "./components";
+
 function App() {
-  return <>TodoList</>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
 
 export default App;
