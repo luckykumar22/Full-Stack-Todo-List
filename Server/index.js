@@ -28,16 +28,20 @@ app.get("/get", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.put('/update/:id'(req,res)=>{
-  const {id }= req.params;
+app.put("/update/:id", (req, res) => {
+  const { id } = req.params;
   console.log(id);
-  TodoSchema.findByIdAndUpdate({
-    {_id:id,},
-    {done:true}
-  })
-  .then(result=>res.json(result))
-  .catch(err=>res.json(err))
-})
+  TodoSchema.findByIdAndUpdate({ _id: id }, { done: true })
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err));
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const { id } = req.params;
+  TodoSchema.findByIdAndDelete({ _id: id })
+    .then((result) => res.json(result))
+    .catch((err) => res.json(err));
+});
 
 // Create a new todo item
 app.post("/add", (req, res) => {

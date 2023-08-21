@@ -18,9 +18,17 @@ function Home() {
   const handleEdit = (id) => {
     axios
       .put("http://localhost:3000/update/" + id)
-      .then((result) => {
-        console.log("Data received from server:", result.data); // Log the received data
-        setTodos(result);
+      .then((result => {
+        location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete("http://localhost:3000/delete/" + id)
+      .then((result => {
+        location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -47,7 +55,7 @@ function Home() {
 
             <div>
               <span>
-                <i className="ri-delete-bin-7-line icon"></i>
+                <i onClick={()=>handleDelete(todo._id)} className="ri-delete-bin-7-line icon"></i>
               </span>
             </div>
           </div>
